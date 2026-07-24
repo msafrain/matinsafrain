@@ -9,7 +9,132 @@
   />
   <meta name="theme-color" content="#0a246a" />
   <title>Matin Safrain</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=2" />
+
+  <style id="readme-popup-styles">
+    .hidden { display: none !important; }
+    .dialog-open { overflow: hidden; }
+
+    .readme-row {
+      width: 100%;
+      padding: 0;
+      border: 0 !important;
+      border-radius: 0;
+      appearance: none;
+      -webkit-appearance: none;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      text-align: left;
+      text-decoration: none;
+      cursor: default;
+    }
+
+    .notepad-window {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      z-index: 99999;
+      width: min(760px, calc(100vw - 32px));
+      height: min(650px, calc(100vh - 32px));
+      transform: translate(-50%, -50%);
+      display: grid;
+      grid-template-rows: auto auto minmax(0, 1fr);
+      color: #111;
+      background: #d4d0c8;
+      border: 2px solid;
+      border-color: #fff #404040 #404040 #fff;
+      box-shadow: 12px 14px 0 rgba(0, 0, 0, 0.32);
+      font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+
+    .notepad-title-bar {
+      min-height: 30px;
+      margin: 2px;
+      padding: 3px 4px 3px 7px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: #fff;
+      font-weight: 700;
+      background: linear-gradient(90deg, #0a246a, #3a6ea5);
+    }
+
+    .notepad-title-bar__identity {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .notepad-title-bar__identity span:last-child {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .notepad-close {
+      flex: 0 0 auto;
+      width: 23px;
+      height: 22px;
+      padding: 0;
+      border: 2px solid;
+      border-color: #fff #404040 #404040 #fff;
+      background: #d4d0c8;
+      color: #111;
+      font: 700 15px/16px Tahoma, Verdana, Arial, sans-serif;
+    }
+
+    .notepad-close:active {
+      border-color: #404040 #fff #fff #404040;
+    }
+
+    .notepad-menu {
+      min-height: 27px;
+      padding: 4px 10px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      border-bottom: 1px solid #808080;
+      background: #d4d0c8;
+      font-size: 13px;
+    }
+
+    .notepad-document {
+      margin: 2px;
+      padding: 18px 20px;
+      overflow: auto;
+      outline: none;
+      background: #fff;
+      border: 2px solid;
+      border-color: #808080 #fff #fff #808080;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .notepad-document p {
+      margin: 0 0 1.15em;
+    }
+
+    .notepad-document p:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 720px) {
+      .notepad-window {
+        width: calc(100vw - 16px);
+        height: calc(100vh - 16px);
+      }
+
+      .notepad-document {
+        padding: 15px;
+        font-size: 13px;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
@@ -209,6 +334,48 @@
     </article>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=2"></script>
+
+  <script id="readme-popup-script">
+    (() => {
+      const setupReadme = () => {
+        const readmeWindow = document.getElementById("readme-window");
+        const openReadme = document.getElementById("open-readme");
+        const closeReadme = document.getElementById("close-readme");
+        const readmeDocument = document.querySelector(".notepad-document");
+
+        if (!readmeWindow || !openReadme || !closeReadme) return;
+
+        const openWindow = (event) => {
+          if (event) event.preventDefault();
+          readmeWindow.classList.remove("hidden");
+          document.body.classList.add("dialog-open");
+          if (readmeDocument) readmeDocument.focus();
+        };
+
+        const closeWindow = () => {
+          readmeWindow.classList.add("hidden");
+          document.body.classList.remove("dialog-open");
+          openReadme.focus();
+        };
+
+        openReadme.onclick = openWindow;
+        closeReadme.onclick = closeWindow;
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && !readmeWindow.classList.contains("hidden")) {
+            closeWindow();
+          }
+        });
+      };
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", setupReadme, { once: true });
+      } else {
+        setupReadme();
+      }
+    })();
+  </script>
+
 </body>
 </html>
