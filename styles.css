@@ -589,3 +589,5 @@ input {
     font-size: 13px;
   }
 }
+
+.readme-row{appearance:none;-webkit-appearance:none;border:none!important;background:transparent;text-decoration:none;color:inherit;cursor:default;}
