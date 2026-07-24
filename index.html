@@ -99,11 +99,27 @@
         </aside>
 
         <section class="content-panel" aria-label="Directory contents">
-          <div class="details-view" role="table" aria-label="Matin Safrain folders">
+          <div class="details-view" role="table" aria-label="Matin Safrain files and folders">
             <div class="details-header" role="row">
               <div class="name-column" role="columnheader">Name</div>
               <div class="type-column" role="columnheader">Type</div>
             </div>
+
+            <button
+              class="file-row readme-row"
+              id="open-readme"
+              type="button"
+              role="row"
+              data-status="Opening README.txt..."
+              aria-haspopup="dialog"
+              aria-controls="readme-window"
+            >
+              <span class="file-name" role="cell">
+                <span class="file-icon" aria-hidden="true">📄</span>
+                <span>README.txt</span>
+              </span>
+              <span class="file-type" role="cell">I see what others miss</span>
+            </button>
 
             <a
               class="file-row"
@@ -139,11 +155,60 @@
       </div>
 
       <footer class="status-bar">
-        <span id="status-message">2 object(s)</span>
+        <span id="status-message">3 object(s)</span>
         <span>matinsafrain.com</span>
       </footer>
     </section>
   </main>
+
+
+  <div
+    class="notepad-window hidden"
+    id="readme-window"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="readme-title"
+  >
+    <header class="notepad-title-bar">
+      <div class="notepad-title-bar__identity">
+        <span aria-hidden="true">📄</span>
+        <span id="readme-title">README.txt - Notepad</span>
+      </div>
+      <button
+        class="notepad-close"
+        id="close-readme"
+        type="button"
+        aria-label="Close README.txt"
+      >×</button>
+    </header>
+
+    <nav class="notepad-menu" aria-label="Decorative Notepad menu">
+      <span><u>F</u>ile</span>
+      <span><u>E</u>dit</span>
+      <span><u>S</u>earch</span>
+      <span><u>H</u>elp</span>
+    </nav>
+
+    <article class="notepad-document" tabindex="0">
+      <p>I am Matin Safrain.</p>
+
+      <p>I graduated with a Diploma in Aerospace Engineering. I began my career as a quality control technician before transitioning to a lorry driver and, eventually, a marketer.</p>
+
+      <p>Since young, I have always been consumed by creativity and imagination, bringing the ideas in my mind to life through drawings and crafts. As I grew older, I became curious about entrepreneurship and started my first hustle by selling PSP games. Today, I continue that journey by selling used books.</p>
+
+      <p>I have a weirdness where I often see every creation in life as a form of art. I am quite a deep and sentimental person who observes, learns, and experiences life deeply. I became obsessed with understanding patterns and behaviour as a whole.</p>
+
+      <p>Driven by the desire to share my discoveries and realizations, I found my love for visual storytelling, as it allows me to express the thoughts, sentiments, and emotions I experience. It is also the reason I developed an interest in marketing.</p>
+
+      <p>My curiosity, obsession, weirdness, and life experiences have pushed me beyond the field of marketing and into many other disciplines. Together, they shaped an intuition and visionary power that allows me to see what others often miss, recognizing hidden potential, future appreciation, and possibilities before they become obvious.</p>
+
+      <p>I see what others miss</p>
+
+      <p>This space is my separate dedication to sharing my stories.</p>
+
+      <p>— Matin Safrain</p>
+    </article>
+  </div>
 
   <script src="script.js"></script>
 </body>

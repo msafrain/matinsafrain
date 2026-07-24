@@ -466,3 +466,126 @@ input {
     display: none;
   }
 }
+
+
+/* README.txt row */
+.readme-row {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: default;
+}
+
+/* Windows 2000-style Notepad popup */
+.hidden {
+  display: none !important;
+}
+
+.dialog-open {
+  overflow: hidden;
+}
+
+.notepad-window {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 1000;
+  width: min(760px, calc(100vw - 32px));
+  height: min(650px, calc(100vh - 32px));
+  transform: translate(-50%, -50%);
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  background: var(--chrome);
+  border: 2px solid;
+  border-color: var(--chrome-light) var(--chrome-dark) var(--chrome-dark) var(--chrome-light);
+  box-shadow: 12px 14px 0 rgba(0, 0, 0, 0.32);
+}
+
+.notepad-title-bar {
+  min-height: 30px;
+  margin: 2px;
+  padding: 3px 4px 3px 7px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: #fff;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--title-start), var(--title-end));
+}
+
+.notepad-title-bar__identity {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.notepad-title-bar__identity span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.notepad-close {
+  flex: 0 0 auto;
+  width: 23px;
+  height: 22px;
+  padding: 0;
+  border: 2px solid;
+  border-color: var(--chrome-light) var(--chrome-dark) var(--chrome-dark) var(--chrome-light);
+  background: var(--chrome);
+  font-weight: 700;
+  line-height: 16px;
+}
+
+.notepad-close:active {
+  border-color: var(--chrome-dark) var(--chrome-light) var(--chrome-light) var(--chrome-dark);
+}
+
+.notepad-menu {
+  min-height: 27px;
+  padding: 4px 10px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid var(--chrome-mid);
+  font-size: 13px;
+}
+
+.notepad-document {
+  margin: 2px;
+  padding: 18px 20px;
+  overflow: auto;
+  outline: none;
+  background: #fff;
+  border: 2px solid;
+  border-color: var(--chrome-mid) var(--chrome-light) var(--chrome-light) var(--chrome-mid);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.notepad-document p {
+  margin: 0 0 1.15em;
+}
+
+.notepad-document p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 720px) {
+  .notepad-window {
+    width: calc(100vw - 16px);
+    height: calc(100vh - 16px);
+  }
+
+  .notepad-document {
+    padding: 15px;
+    font-size: 13px;
+  }
+}
