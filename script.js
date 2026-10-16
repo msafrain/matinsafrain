@@ -1,6 +1,6 @@
 const statusMessage=document.querySelector("#status-message");
 const links=document.querySelectorAll("[data-status]");
-const defaultStatus="6 object(s)";
+const defaultStatus="7 object(s)";
 links.forEach(link=>{
 ["mouseenter","focus"].forEach(ev=>link.addEventListener(ev,()=>statusMessage.textContent=link.dataset.status));
 ["mouseleave","blur"].forEach(ev=>link.addEventListener(ev,()=>statusMessage.textContent=defaultStatus));
