@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q96QN61M2Y"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Q96QN61M2Y');
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
@@ -442,6 +450,22 @@
       <p>— Matin Safrain</p>
     </article>
   </div>
+
+  <!-- Track directory selections in GA4 (both main list and folder tree) -->
+  <script>
+    document.addEventListener('click', function(event) {
+      const entry = event.target.closest('a.file-row, a.tree-item.nested');
+      if (!entry || typeof window.gtag !== 'function') return;
+      const label = entry.querySelector('.file-name span:last-child, span:last-child');
+      const itemName = label ? label.textContent.trim() : 'Unknown';
+      const destination = entry.getAttribute('href') || 'readme_popup';
+      window.gtag('event', 'directory_item_click', {
+        item_name: itemName,
+        item_location: entry.classList.contains('file-row') ? 'main_list' : 'folder_tree',
+        destination_url: destination
+      });
+    });
+  </script>
 
   <script src="script.js?v=2"></script>
 
